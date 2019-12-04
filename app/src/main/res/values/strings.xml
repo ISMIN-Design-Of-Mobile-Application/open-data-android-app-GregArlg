@@ -7,4 +7,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="url_des_donn_es_utilis_es">URL des données utilisées : https://data.opendatasoft.com/explore/dataset/prix_des_carburants_stations%40public/export/?location=2,39.63954,43.76953&amp;basemap=jawg.sunny</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

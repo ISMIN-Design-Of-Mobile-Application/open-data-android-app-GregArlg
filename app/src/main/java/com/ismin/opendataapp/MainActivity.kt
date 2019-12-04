@@ -14,10 +14,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Boutons
+
+        //Appelle le fragment Info au clic sur le bouton info
         infoBtn.setOnClickListener { putInfoFragment()  }
     }
 
 
+    /**
+     * Fct d'appel du fragment InfoFragment
+     */
     private fun putInfoFragment(){
         val fragment = InfoFragment()
         val fragmentTransaction = supportFragmentManager.beginTransaction()
