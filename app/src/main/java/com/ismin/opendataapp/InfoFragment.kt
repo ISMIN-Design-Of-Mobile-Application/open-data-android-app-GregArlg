@@ -15,7 +15,6 @@ class InfoFragment : Fragment() {
     private var param2: String? = null
     private var listener: OnInfoClicListener? = null
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,17 +24,18 @@ class InfoFragment : Fragment() {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
+    /*fun onButtonPressed(uri: Uri) {
         listener?.onInfoClic(uri)
-    }
+    }*/
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnInfoClicListener) {
+     /*   if (context is OnInfoClicListener) {
             listener = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnInfoClicListener")
         }
+        */
     }
 
     override fun onDetach() {
@@ -46,7 +46,7 @@ class InfoFragment : Fragment() {
 
     interface OnInfoClicListener {
         // TODO: Update argument type and name
-        fun onInfoClic(uri: Uri)
+       // fun onInfoClic(uri: Uri)
     }
 
 
