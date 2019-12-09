@@ -11,8 +11,6 @@ import com.ismin.opendataapp.R
 
 
 class InfoFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
     private var listener: OnInfoClicListener? = null
 
     override fun onCreateView(

@@ -17,6 +17,9 @@ class MainActivity : AppCompatActivity() {
 
         //Appelle le fragment Info au clic sur le bouton info
         infoBtn.setOnClickListener { putInfoFragment()  }
+
+        //Appelle le fragment Map au clic sur le bouton map
+        carteBtn.setOnClickListener { putMapFragment()  }
     }
 
 
@@ -29,7 +32,17 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.a_main_rootview, fragment)
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
         fragmentTransaction.commit()
-        //infoBtn.visibility = View.GONE
+    }
+
+    /**
+     * Fct d'appel du fragment MapFragment
+     */
+    private fun putMapFragment(){
+        val fragment = MapFragment()
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.a_main_rootview, fragment)
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        fragmentTransaction.commit()
     }
 
 }
