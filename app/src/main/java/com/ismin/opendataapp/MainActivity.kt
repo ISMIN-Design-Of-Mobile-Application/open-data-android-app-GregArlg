@@ -9,6 +9,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var station: Station
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,6 +22,8 @@ class MainActivity : AppCompatActivity() {
 
         //Appelle le fragment Map au clic sur le bouton map
         carteBtn.setOnClickListener { putMapFragment()  }
+
+        station
     }
 
 
