@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         putFragment(StationListFragment())
 
 
-
         // Boutons
 
         //Appelle le fragment List au clic sur le bouton map
@@ -31,7 +30,6 @@ class MainActivity : AppCompatActivity() {
 
         //Appelle le fragment Info au clic sur le bouton info
         infoBtn.setOnClickListener { putFragment(InfoFragment())  }
-
 
 
         //Station test à Marseille
