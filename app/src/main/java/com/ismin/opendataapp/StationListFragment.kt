@@ -1,43 +1,43 @@
 package com.ismin.opendataapp
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+
+
+const val STATIONS_ARGUMENTS_KEY = "key"
 
 
 class StationListFragment : Fragment() {
-    private var listener: OnStationListListener? = null
+    private val NUMBER_OF_COLUMNS = 1
+
+    private var stations: ArrayList<Station> = ArrayList()
+    private lateinit var rcvStations: RecyclerView
+    private lateinit var stationAdapter:StationAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_station_list, container, false)
+
+        stations = arguments!!.getSerializable(STATIONS_ARGUMENTS_KEY) as ArrayList<Station>
+
+        rcvStations = rootView.findViewById(R.id.stationList)
+        stationAdapter = StationAdapter(stations)
+        rcvStations.adapter = stationAdapter
+        rcvStations.layoutManager = GridLayoutManager(context, NUMBER_OF_COLUMNS)
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_station_list, container, false)
+        return rootView
     }
 
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        /*   if (context is OnInfoClicListener) {
-               listener = context
-           } else {
-               throw RuntimeException(context.toString() + " must implement OnInfoClicListener")
-           }
-           */
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-
-    interface OnStationListListener {
-        // TODO: Update argument type and name
-        // fun onInfoClic(uri: Uri)
+    private fun removeBottle(position: Int){
+        stations.removeAt(position)
+        stationAdapter.notifyItemRemoved(position)
     }
 }
