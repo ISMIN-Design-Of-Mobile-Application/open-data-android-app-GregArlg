@@ -17,10 +17,8 @@ class StationAdapter(private val stations: ArrayList<Station>) :
     override fun onBindViewHolder(viewholder: StationViewHolder, position: Int) {
         val (latitude, longitude, identifiant, marque, nom, image) = this.stations[position]
 
-        viewholder.txvStationLat.text = latitude.toString()
-        viewholder.txvStationLong.text = longitude.toString()
+
         viewholder.txvStationId.text = identifiant.toString()
-        viewholder.txvStationMarque.text = marque
         viewholder.txvStationNom.text = nom
         viewholder.imvImage.setImageResource(image)
     }
