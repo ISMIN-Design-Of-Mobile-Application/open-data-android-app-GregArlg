@@ -1,5 +1,6 @@
 package com.ismin.opendataapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 const val STATIONS_ARGUMENTS_KEY = "key"
+const val EXTRA_DETAILS = "key_to_details_activity"
 
 
 class StationListFragment : Fragment() {
@@ -40,5 +42,9 @@ class StationListFragment : Fragment() {
     private fun showDetails(position: Int){
         val toast = Toast.makeText(context, "${stations[position].nom} cliquée", Toast.LENGTH_LONG)
         toast.show()
+        val intent = Intent(context, DetailsStationActivity::class.java).apply {
+            putExtra(EXTRA_DETAILS, stations[position])
+        }
+        startActivity(intent)
     }
 }
