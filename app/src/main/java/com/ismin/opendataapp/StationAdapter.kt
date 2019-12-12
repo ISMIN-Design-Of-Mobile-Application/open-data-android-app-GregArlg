@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class StationAdapter(private val stations: ArrayList<Station>) :
+class StationAdapter(private val stations: ArrayList<Station>, private val showDetails:(Int) -> Unit) :
     RecyclerView.Adapter<StationViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StationViewHolder {
         val row = LayoutInflater.from(parent.context).inflate(R.layout.row_station, parent,
             false)
 
-        return StationViewHolder(row)
+        return StationViewHolder(row, showDetails)
     }
 
     override fun onBindViewHolder(viewholder: StationViewHolder, position: Int) {

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -28,7 +29,7 @@ class StationListFragment : Fragment() {
         stations = arguments!!.getSerializable(STATIONS_ARGUMENTS_KEY) as ArrayList<Station>
 
         rcvStations = rootView.findViewById(R.id.stationList)
-        stationAdapter = StationAdapter(stations)
+        stationAdapter = StationAdapter(stations, ::showDetails)
         rcvStations.adapter = stationAdapter
         rcvStations.layoutManager = GridLayoutManager(context, NUMBER_OF_COLUMNS)
 
@@ -36,8 +37,8 @@ class StationListFragment : Fragment() {
         return rootView
     }
 
-    private fun removeBottle(position: Int){
-        stations.removeAt(position)
-        stationAdapter.notifyItemRemoved(position)
+    private fun showDetails(position: Int){
+        val toast = Toast.makeText(context, "${stations[position].nom} cliquée", Toast.LENGTH_LONG)
+        toast.show()
     }
 }
