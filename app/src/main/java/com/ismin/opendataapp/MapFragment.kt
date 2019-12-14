@@ -1,6 +1,7 @@
 package com.ismin.opendataapp
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 
@@ -36,6 +38,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val rootview = inflater.inflate(R.layout.fragment_map, container, false)
 
         stations = arguments!!.getSerializable(STATIONS_ARGUMENTS_KEY) as ArrayList<Station>
+
+        mMap.setOnMarkerClickListener{
+            showDetails()
+
+            false
+        }
 
         return rootview
     }
@@ -112,8 +120,22 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         for(stat in stations){
             val positionS = LatLng(stat.latitude.toDouble(), stat.longitude.toDouble())
-            mMap.addMarker(MarkerOptions().position(positionS).title("${stat.nom}").icon(BitmapDescriptorFactory.fromResource(R.drawable.pompe_android2)))
+            mMap.addMarker(MarkerOptions()
+                .position(positionS)
+                .title("${stat.nom}")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.pompe_android2)))
+
+
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(48.8534, 2.3488), 3f))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(48.8534, 2.3488), 5f))
     }
+
+    private fun showDetails(position: Int){
+
+        val intent = Intent(context, DetailsStationActivity::class.java).apply {
+            putExtra(EXTRA_DETAILS, stations[position])
+        }
+        startActivity(intent)
+    }
+
 }
