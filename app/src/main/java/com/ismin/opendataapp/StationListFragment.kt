@@ -40,8 +40,9 @@ class StationListFragment : Fragment() {
     }
 
     private fun showDetails(position: Int){
-        val toast = Toast.makeText(context, "${stations[position].nom} cliquée", Toast.LENGTH_LONG)
+        val toast = Toast.makeText(context, "Affichage de ${stations[position].nom}", Toast.LENGTH_SHORT)
         toast.show()
+
         val intent = Intent(context, DetailsStationActivity::class.java).apply {
             putExtra(EXTRA_DETAILS, stations[position])
         }

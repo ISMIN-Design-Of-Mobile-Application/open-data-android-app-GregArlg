@@ -1,6 +1,7 @@
 package com.ismin.opendataapp
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
@@ -19,6 +21,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private var listener: OnMapInteractionListener? = null
+
+    private var stations: ArrayList<Station> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +33,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_map, container, false)
+        val rootview = inflater.inflate(R.layout.fragment_map, container, false)
+
+        stations = arguments!!.getSerializable(STATIONS_ARGUMENTS_KEY) as ArrayList<Station>
+
+        return rootview
     }
 
     override fun onStart() {
@@ -97,9 +105,15 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+
         // Add a marker in Paris and move the camera
         val paris = LatLng(48.8534, 2.3488)
         mMap.addMarker(MarkerOptions().position(paris).title("Marker in Paris"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(paris))
+
+        for(stat in stations){
+            val positionS = LatLng(stat.latitude.toDouble(), stat.longitude.toDouble())
+            mMap.addMarker(MarkerOptions().position(positionS).title("${stat.nom}").icon(BitmapDescriptorFactory.fromResource(R.drawable.pompe_android2)))
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(48.8534, 2.3488), 3f))
     }
 }
