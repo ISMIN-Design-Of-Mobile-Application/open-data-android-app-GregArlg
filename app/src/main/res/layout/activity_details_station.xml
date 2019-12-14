@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailsStationActivity">
+
+    <ImageView
+        android:id="@+id/img_marque"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_gas_pump" />
+
+    <TextView
+        android:id="@+id/nom_marque"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Marque"
+        app:layout_constraintEnd_toEndOf="@+id/img_marque"
+        app:layout_constraintStart_toStartOf="@+id/img_marque"
+        app:layout_constraintTop_toBottomOf="@+id/img_marque" />
+
+    <TextView
+        android:id="@+id/static_nom_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="70dp"
+        android:editable="false"
+        android:text="Nom de la station :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nom_marque" />
+
+    <TextView
+        android:id="@+id/nom_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Station"
+        app:layout_constraintStart_toStartOf="@+id/static_nom_station"
+        app:layout_constraintTop_toBottomOf="@+id/static_nom_station" />
+
+    <TextView
+        android:id="@+id/static_id_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:editable="false"
+        android:text="Identifiant de la station :"
+        app:layout_constraintStart_toStartOf="@+id/nom_station"
+        app:layout_constraintTop_toBottomOf="@+id/nom_station" />
+
+    <TextView
+        android:id="@+id/id_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Identifiant"
+        app:layout_constraintStart_toStartOf="@+id/static_id_station"
+        app:layout_constraintTop_toBottomOf="@+id/static_id_station" />
+
+    <TextView
+        android:id="@+id/static_lat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="Latitude :"
+        app:layout_constraintStart_toStartOf="@+id/id_station"
+        app:layout_constraintTop_toBottomOf="@+id/id_station" />
+
+    <TextView
+        android:id="@+id/lat_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Latitude"
+        app:layout_constraintStart_toStartOf="@+id/static_lat"
+        app:layout_constraintTop_toBottomOf="@+id/static_lat" />
+
+    <TextView
+        android:id="@+id/static_long"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="Longitude :"
+        app:layout_constraintStart_toEndOf="@+id/static_lat"
+        app:layout_constraintTop_toTopOf="@+id/static_lat" />
+
+    <TextView
+        android:id="@+id/long_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Longitude"
+        app:layout_constraintStart_toStartOf="@+id/static_long"
+        app:layout_constraintTop_toBottomOf="@+id/static_long" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

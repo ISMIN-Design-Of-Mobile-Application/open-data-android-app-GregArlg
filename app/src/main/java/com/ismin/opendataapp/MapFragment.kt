@@ -19,7 +19,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 
-class MapFragment : Fragment(), OnMapReadyCallback {
+class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
     private lateinit var mMap: GoogleMap
     private var listener: OnMapInteractionListener? = null
@@ -38,12 +38,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val rootview = inflater.inflate(R.layout.fragment_map, container, false)
 
         stations = arguments!!.getSerializable(STATIONS_ARGUMENTS_KEY) as ArrayList<Station>
-
-        mMap.setOnMarkerClickListener{
-            showDetails()
-
-            false
-        }
 
         return rootview
     }
@@ -113,10 +107,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-
-        // Add a marker in Paris and move the camera
-        val paris = LatLng(48.8534, 2.3488)
-        mMap.addMarker(MarkerOptions().position(paris).title("Marker in Paris"))
+        mMap.setOnInfoWindowClickListener(this)
 
         for(stat in stations){
             val positionS = LatLng(stat.latitude.toDouble(), stat.longitude.toDouble())
@@ -124,18 +115,18 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 .position(positionS)
                 .title("${stat.nom}")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.pompe_android2)))
+                .tag = stat
 
 
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(48.8534, 2.3488), 5f))
     }
-
-    private fun showDetails(position: Int){
-
-        val intent = Intent(context, DetailsStationActivity::class.java).apply {
-            putExtra(EXTRA_DETAILS, stations[position])
+    override fun onInfoWindowClick(p0: Marker?) {
+        val intent = Intent(context, DetailsStationActivity::class.java)
+        if(p0?.tag != null) {
+            intent.putExtra(EXTRA_DETAILS, p0?.tag as Station)
+            this.startActivity(intent)
         }
-        startActivity(intent)
     }
 
 }
