@@ -1,14 +1,14 @@
 package com.ismin.opendataapp
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-@Entity
-data class Station (
-    val latitude: Float,
-    val longitude: Float,
+data class StationServerData (
+    @SerializedName("geo_point")
+    val coordonnees: GeoPoint,
     @SerializedName("id")
     val identifiant: Int,
     @SerializedName("brand")
@@ -16,7 +16,11 @@ data class Station (
     @SerializedName("name")
     val nom: String,
     val image: Int
-): Serializable{
-    @PrimaryKey(autoGenerate = true)
-    var ident: Int = 0
-}
+): Serializable
+
+data class GeoPoint(
+    @SerializedName("lat")
+    val latitude: Float,
+    @SerializedName("lon")
+    val longitude: Float
+)

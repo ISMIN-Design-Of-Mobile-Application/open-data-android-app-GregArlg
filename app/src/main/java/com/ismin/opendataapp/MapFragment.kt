@@ -124,7 +124,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickL
     override fun onInfoWindowClick(p0: Marker?) {
         val intent = Intent(context, DetailsStationActivity::class.java)
         if(p0?.tag != null) {
-            intent.putExtra(EXTRA_DETAILS, p0?.tag as Station)
+            intent.putExtra(EXTRA_DETAILS, p0.tag as Station)
             this.startActivity(intent)
         }
     }
