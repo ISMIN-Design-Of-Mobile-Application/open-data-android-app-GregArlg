@@ -152,6 +152,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    /**
+     * Trie et filtre les stations par nom de marque et les range dans la base de données
+     * Jeu de donnée trop volumineux pour gérer toutes les données
+     */
     fun trieEtInsereStation(statData: StationServerData) {
         if (statData.marque == "Carrefour Market" ||
             statData.marque == "Carrefour Contact" ||
