@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.stationsservicemapfr.InfoFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -126,6 +127,8 @@ class MainActivity : AppCompatActivity() {
                         stationList.clear()
                         stationList.addAll(stationDao.getAll())
 
+                        choixImageStation(stationList)
+
                     } else {
                         val toast = Toast.makeText(
                             this@MainActivity,
@@ -181,6 +184,22 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
+    }
+
+    fun choixImageStation(statList: List<Station>) {
+        for (i in 0..statList.size - 1) {
+
+            if (statList[i].marque == "Carrefour Market") {
+                statList[i].image = R.drawable.carrefour_market
+            } else if (statList[i].marque == "Carrefour Contact") {
+                statList[i].image = R.drawable.carrefour_contact
+            } else if (statList[i].marque == "Carrefour") {
+                statList[i].image = R.drawable.carrefour
+            } else if (statList[i].marque == "Carrefour Express") {
+                statList[i].image = R.drawable.carrefour_express
+            }
+        }
+
     }
 
 

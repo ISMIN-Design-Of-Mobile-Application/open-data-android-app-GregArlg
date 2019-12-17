@@ -15,7 +15,7 @@ data class Station (
     val marque: String,
     @SerializedName("name")
     val nom: String,
-    val image: Int
+    var image: Int
 ): Serializable{
     @PrimaryKey(autoGenerate = true)
     var ident: Int = 0
