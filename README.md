@@ -1,19 +1,22 @@
 
-## [APP NAME]  
+Stations Carrefour  
   
 Codé par :   
- - [prenom1] [nom1]   
- - [prenom2] [nom2]   
+ - Grégory Arliguy   
+ - Timothée Choukroun-Tardy 
 
 ## Description  
   
-URL des données : [URL]  
+URL des données : https://data.opendatasoft.com/explore/dataset/prix_des_carburants_stations%40public/information/
   
-[A completer]  
+Liste des stations services de France, le jeu de données ne contient pas de prix contrairement à ce que son titre indique.
+Le jeu de données était trop volumineux à traiter pour l'application, donc nous avons filtré les stations pour ne garder que les stations services du groupe Carrefour.
   
 ## Librairies externes  
   
-[A completer]  
+Room pour la base de données interne
+Retrofit pour la communication avec le serveur
+Material pour le thème de l'application
   
 ## Consignes  
   
