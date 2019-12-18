@@ -16,6 +16,7 @@ Le jeu de données était trop volumineux à traiter pour l'application, donc no
   
 Room pour la base de données interne
 Retrofit pour la communication avec le serveur
+Material pour le thème de l'application
   
 ## Consignes  
   
