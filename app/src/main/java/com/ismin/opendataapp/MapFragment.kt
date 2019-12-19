@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,8 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 import com.google.maps.android.clustering.ClusterManager
+import com.google.android.gms.maps.MapView
+
 
 class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
@@ -121,22 +124,27 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickL
         }*/
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(48.8534, 2.3488), 5f))
         setUpClusterer()
+
     }
 
 
     private fun setUpClusterer() {
         mClusterManager = ClusterManager(this.requireContext(), mMap)
         mMap.setOnCameraIdleListener(mClusterManager)
-        mMap.setOnMarkerClickListener(mClusterManager)
         addStationToMap()
     }
 
     private fun addStationToMap() {
         stations.forEach {
-            val stationItem = StationItem(it.latitude.toDouble(), it.longitude.toDouble(), it.nom, it.nom)
+            val stationSnippet = "id : ${it.identifiant}"
+            val stationItem =
+                StationItem(it.latitude.toDouble(), it.longitude.toDouble(), it.nom, stationSnippet)
             mClusterManager.addItem(stationItem)
+            mMap.setOnMarkerClickListener(mClusterManager)
         }
+
     }
+
 
     override fun onInfoWindowClick(p0: Marker?) {
         val intent = Intent(context, DetailsStationActivity::class.java)
