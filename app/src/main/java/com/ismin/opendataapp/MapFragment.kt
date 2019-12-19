@@ -18,9 +18,11 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
+import com.google.maps.android.clustering.ClusterManager
 
 class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
+    private lateinit var mClusterManager: ClusterManager<StationItem>
     private lateinit var mMap: GoogleMap
     private var listener: OnMapInteractionListener? = null
 
@@ -109,18 +111,33 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickL
 
         mMap.setOnInfoWindowClickListener(this)
 
-        for(stat in stations){
+        /*for(stat in stations){
             val positionS = LatLng(stat.latitude.toDouble(), stat.longitude.toDouble())
             mMap.addMarker(MarkerOptions()
                 .position(positionS)
                 .title("${stat.nom}")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.pompe_android2)))
                 .tag = stat
-
-
-        }
+        }*/
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(48.8534, 2.3488), 5f))
+        setUpClusterer()
     }
+
+
+    private fun setUpClusterer() {
+        mClusterManager = ClusterManager(this.requireContext(), mMap)
+        mMap.setOnCameraIdleListener(mClusterManager)
+        mMap.setOnMarkerClickListener(mClusterManager)
+        addStationToMap()
+    }
+
+    private fun addStationToMap() {
+        stations.forEach {
+            val stationItem = StationItem(it.latitude.toDouble(), it.longitude.toDouble(), it.nom, it.nom)
+            mClusterManager.addItem(stationItem)
+        }
+    }
+
     override fun onInfoWindowClick(p0: Marker?) {
         val intent = Intent(context, DetailsStationActivity::class.java)
         if(p0?.tag != null) {

@@ -15,6 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.ArrayList
 
+
 const val SERVER_BASE_URL = "https://data.opendatasoft.com/api/v2/"
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        print("Coucou")
 
         // Boutons
 
