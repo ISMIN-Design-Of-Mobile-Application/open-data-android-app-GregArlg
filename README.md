@@ -11,6 +11,11 @@ URL des données : https://data.opendatasoft.com/explore/dataset/prix_des_carbur
   
 Liste des stations services de France, le jeu de données ne contient pas de prix contrairement à ce que son titre indique.
 Le jeu de données était trop volumineux à traiter pour l'application, donc nous avons filtré les stations pour ne garder que les stations services du groupe Carrefour.
+
+Problème rencontré : 
+
+ Sur le dernier commit nous avons ajouté le Clustering des markers, mais cela nous a posé un problème, le clic sur un marker n'ouvre plus la page d'informations correspondant à la station. Cliquer sur un marker affiche le nom et l'identifiant de la station au dessus de l'icône.
+ Dans le commit précédent, ( sans le clustering des markers ), cliquer sur un marker ouvre bien la page d'informations correspondant à la station.
   
 ## Librairies externes  
   
@@ -46,4 +51,4 @@ Lien vers le sujet : https://docs.google.com/presentation/d/1mwu2xx7_qfCZDfsRxse
  - Enrichissements techniques :
     - Mise en place d’une base de données locale pour afficher la liste d’élément en mode hors connexion
     - Utilisation de LiveData ou d’Observable pour la récupération de données dans la BDD
- 
+   
